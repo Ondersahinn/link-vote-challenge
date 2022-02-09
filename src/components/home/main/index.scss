@@ -1,0 +1,129 @@
+.home-page-box {
+  float: left;
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+
+  .home-page-normal-part {
+    width: 40%;
+    margin: 10px auto;
+   
+    .add-new-link {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background: #f7f7f7;
+      text-decoration: none;
+      color: black;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      .icon-box {
+        background: #ececec;
+        padding: 20px;
+        border-radius: 10px;
+        font-weight: 600;
+      }
+      span {
+        &:last-child {
+          text-align: center;
+          float: left;
+          font-size: 32px;
+          width: 100%;
+        }
+        
+      }
+    }
+
+    .link-list-box {
+      float: left;
+      width: 100%;
+      border-top: 3px solid gainsboro;
+      padding: 0 10px;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 215px);
+      .order-select {
+        margin-top: 10px;
+        max-width: fit-content;
+        background: #f2f2f2;
+        height: 30px;
+        border-radius: 5px;
+        padding: 5px;
+        margin-left: 10px;
+        &:focus, &:focus-visible {
+          outline-color: #ff6000;
+        }
+      }
+      .link-lists{
+        display: flex;
+        padding: 10px ;
+        border-radius: 10px;
+        cursor: pointer;
+        position: relative;
+        .delete-icon {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          display: none;
+        }
+        &:hover {
+          background: #f7f7f7;
+          .delete-icon {
+            display: block;
+          }
+        }
+        &:first-child {
+          margin-top: 10px;
+        }
+        .point {
+          display: flex;
+          flex-direction: column;
+          background: #ececec;
+          border: 1px solid #adadad;
+          padding: 30px;
+          text-align: center;
+          font-weight: 600;
+          margin-right: 20px;
+        }
+        .link-desc {
+          h3 {
+            margin: 0;
+          }
+          span {
+            color: #b7b7b7;
+            font-weight: 400;
+          }
+          .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            button {
+              display: flex;
+              align-items: center;
+              background: none;
+              border: none;
+              cursor: pointer;
+              svg {
+                width: 22px;
+                height: 22px;
+                path {
+                  fill: #959595;
+                  font-weight: 600;
+                }
+              }
+              span {
+                padding-left: 10px;
+                font-weight: 600;
+                color: #959595;
+              }
+            }
+          }
+        }
+
+        
+      }
+    }
+  }
+}

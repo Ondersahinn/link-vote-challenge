@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { linkList } from "components/constants";
 
 interface IMockData {
-  count: number;
-  mockData: Object;
+  count: number,
+  linkList: Array<Object>,
   searchKey: string;
   pageIndex: number,
   pageSize: number,
@@ -11,10 +11,10 @@ interface IMockData {
 
 const initialState: IMockData = {
   count: 20,
-  mockData: linkList,
+  linkList: linkList,
   searchKey: '',
   pageIndex: 1,
-  pageSize: 10,
+  pageSize: 5,
 };
 
 const mockDataSlice = createSlice({

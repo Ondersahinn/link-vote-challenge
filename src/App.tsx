@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { useHistory } from "react-router";
 import Home from "pages";
+import Header from "components/header";
 
 function App(): JSX.Element {
   const hist = useHistory();
@@ -19,10 +20,12 @@ function App(): JSX.Element {
   return (
     <Provider store={store}>
       <div className="App">
+        <Header />
         <Router history={hist}>
           <Switch>
             <Suspense fallback={loadingImg}>
-              <Route exact path='/' component={Home} />
+            <Route path="/" extach />
+            <Route exact path='/' component={Home} />
             </Suspense>
           </Switch>
         </Router>
