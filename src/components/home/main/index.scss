@@ -3,11 +3,12 @@
   width: 100%;
   max-height: calc(100vh - 80px);
   overflow: hidden;
-
+  display: flex;
+  justify-content: center;
   .home-page-normal-part {
     width: 40%;
-    margin: 10px auto;
-   
+    float: left;
+    margin-top: 15px;
     .add-new-link {
       display: flex;
       align-items: center;

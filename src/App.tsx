@@ -8,8 +8,9 @@ import {
   Switch,
 } from 'react-router-dom';
 import { useHistory } from "react-router";
-import Home from "pages";
+import Home from "pages/Home";
 import Header from "components/header";
+import NewLink from "pages/NewLink";
 
 function App(): JSX.Element {
   const hist = useHistory();
@@ -26,6 +27,7 @@ function App(): JSX.Element {
               <Header />
               <Route path="/" extach />
               <Route exact path='/' component={Home} />
+              <Route exact path='/newlink' component={NewLink} />
             </Suspense>
           </Switch>
         </Router>
