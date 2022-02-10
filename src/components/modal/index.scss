@@ -41,6 +41,41 @@
                     margin: 0;
                     padding: 0;
                 }
+
+                span {
+                    cursor: pointer;
+                }
+
+                svg {
+                    fill: white;
+                }
+            }
+
+            .modal-body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background: #d8d8d8;
+                .remove-link-content {
+                    p {
+                        font-size: 18px;
+                    }
+                    span {
+                        font-weight: 600;
+                        font-size: 22px;
+                    }
+                }
+                .remove-button-group {
+                    display: flex;
+                    float: left;
+                    width: 90%;
+                    margin: 20px auto;
+                    justify-content: space-between;
+                    button {
+                        background: black;
+                    }
+                }
             }
         }
     }

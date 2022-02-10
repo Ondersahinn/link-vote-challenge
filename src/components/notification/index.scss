@@ -1,0 +1,21 @@
+.notification-full-part {
+    position: absolute;
+    float: left;
+    width: 100%;
+    left: 0;
+    top: 50px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    .notification-box {
+        height: auto;
+        background: #ddf9d2;
+        color: #5aad5a;
+        border: 1px solid #5aad5a;
+        padding: 20px 40px;
+        box-shadow: 0 0 3px #5aad5a;
+        h4 {
+            margin: 0;
+        }
+    }
+}

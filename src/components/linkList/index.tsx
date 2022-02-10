@@ -6,17 +6,46 @@ import Pagination from "components/pagination";
 import { useSelector } from "react-redux";
 import Modal from "components/modal";
 import { useState } from "react";
+import Notification from "components/notification";
 
+
+interface ILinkProp {
+    createdDateTime:string,
+    id:string,
+    linkName:string,
+    linkUrl:string,
+    point:number,
+    pointCreatedTime: string
+}
 
 const LinkList = () => {
     const pageIndex = useSelector((state: any) => state.linkList.pageIndex)
     const pageSize = useSelector((state: any) => state.linkList.pageSize)
     const [visible, setVisible] = useState(false);
+    const [notificationVisible, setNotificationVisible] = useState(false);
+    const [selectedLink, setSelectedLink] = useState<ILinkProp>();
 
     const onCancel = (e) => {
-       setVisible(false)
+        setVisible(false)
     }
-    
+
+    const handleNotificationCancel = (e) => {
+        setNotificationVisible(false)
+    }
+
+    const handleDeleteLink = (link) => {
+        setSelectedLink(link)
+        setVisible(true)
+    }
+
+    const handleDeleteOk = () => {
+        const linkListTemp = [...linkList];
+        const filteredData = linkListTemp.filter((e) => e.id !== selectedLink?.id);
+        console.log(filteredData)
+        setVisible(false)
+        setNotificationVisible(true)
+    }
+
     return (
         <>
             <div className="link-list-box">
@@ -41,7 +70,7 @@ const LinkList = () => {
                                 </div>
                             </div>
                             <span className="delete-icon">
-                                <MinusCircleIcon onClick={() => setVisible(true)} />
+                                <MinusCircleIcon onClick={() => handleDeleteLink(e)} />
                             </span>
                         </div>
                     )
@@ -49,9 +78,17 @@ const LinkList = () => {
                 <Pagination total={linkList.length} pageSize={5} />
 
             </div>
-            <Modal title='Deneme' visible={visible} onCancel={onCancel}>
-                <span>Deneme</span>
+            <Modal title='Remove Link' visible={visible} onCancel={onCancel}>
+                <div className="remove-link-content">
+                    <p>Do you want to remove: </p>
+                    <span>{selectedLink?.linkName}</span>
+                </div>
+                <div className="remove-button-group">
+                    <button onClick={handleDeleteOk}>Ok</button>
+                    <button onClick={() => setVisible(false)}>Cancel</button>
+                </div>
             </Modal>
+            <Notification desc='Remove Link' visible={notificationVisible} onCancel={handleNotificationCancel} />
         </>
 
     )

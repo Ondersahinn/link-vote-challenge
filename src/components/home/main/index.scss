@@ -82,10 +82,19 @@
           flex-direction: column;
           background: #ececec;
           border: 1px solid #adadad;
-          padding: 30px;
+          padding: 10px 30px;
           text-align: center;
-          font-weight: 600;
+          font-weight: 900;
           margin-right: 20px;
+          font-size: 32px;
+          justify-content: center;
+          span {
+            &:last-child {
+              font-size: 14px;
+              color: #4a4a4a;
+              font-weight: normal;
+            }
+          }
         }
         .link-desc {
           h3 {
