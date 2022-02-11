@@ -1,12 +1,40 @@
 import { ReactComponent as Vector } from 'assest/img/Vector.svg'
+import { ILinkProp } from 'components/linkList';
+import Notification from 'components/notification';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { handleLinkChange } from 'redux/actions';
 
 const AddLink = () => {
 
+    const dispatch = useDispatch();
+    const linkList = useSelector((state : any) => state.linkList.linkList)
+    const [notificationVisible, setNotificationVisible] = useState(false);
+    const [addLinkName, setAddLinkName] = useState('');
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log(e.target.linkName.value)
-        console.log(e.target.linkUrl.value)
+        const linkListTemp = [...linkList]
+        const date = new Date();
+        const newObj : ILinkProp = {
+            linkName:  e.target.linkName.value,
+            linkUrl: e.target.linkUrl.value,
+            id: Date.now().toString(),
+            point: 0,
+            pointCreatedTime: '',
+            createdDateTime : date.toString()
+        };
+        newObj.linkName = e.target.linkName.value;
+        linkListTemp.unshift(newObj)
+        dispatch(handleLinkChange(linkListTemp))
+        setNotificationVisible(true);
+        setAddLinkName(e.target.linkName.value)
+    }
+
+    
+    const handleNotificationCancel = () => {
+        setNotificationVisible(false)
     }
 
     return (
@@ -29,6 +57,7 @@ const AddLink = () => {
                     </form>
                 </div>
             </div>
+            <Notification desc={addLinkName.toUpperCase()+' added.'} visible={notificationVisible} onCancel={handleNotificationCancel} />
         </>
     )
 }

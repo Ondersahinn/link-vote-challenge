@@ -15,7 +15,6 @@ const Pagination = ({ total, pageSize }: IProps) => {
 
     let pageList = [];
     const pageCount = Math.ceil(total / pageSize);
-    console.log(total);
     for (let index = 1; index <= pageCount; index++) {
         pageList.push(
             <li onClick={() => handlePaginationChange(index)} key={index} className={pageIndex === index ? styles.active : ''}> {index} </li>

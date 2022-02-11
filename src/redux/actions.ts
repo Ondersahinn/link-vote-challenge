@@ -1,1 +1,1 @@
-export { handlePageIndexChange} from "redux/slices/linkList";
+export { handlePageIndexChange, handleLinkChange} from "redux/slices/linkList";

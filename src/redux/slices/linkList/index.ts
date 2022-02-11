@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { linkList } from "components/constants";
 
 interface IMockData {
   count: number,
@@ -11,7 +10,7 @@ interface IMockData {
 
 const initialState: IMockData = {
   count: 20,
-  linkList: linkList,
+  linkList: JSON.parse(localStorage.getItem('linkList')) || [],
   searchKey: '',
   pageIndex: 1,
   pageSize: 5,
@@ -21,12 +20,19 @@ const mockDataSlice = createSlice({
   name: "linkList",
   initialState,
   reducers: {
+    handleLinkChange: (state, action) => {
+      state.linkList = action.payload;
+      localStorage.setItem('linkList', JSON.stringify(action.payload));
+    },
+    handleLinkSort: (state, action) => {
+      state.linkList = action.payload;
+    },
     handlePageIndexChange: (state, action) => {
       state.pageIndex = action.payload
     }
   },
 });
 
-export const { handlePageIndexChange } = mockDataSlice.actions;
+export const { handlePageIndexChange, handleLinkChange } = mockDataSlice.actions;
 
 export default mockDataSlice.reducer;

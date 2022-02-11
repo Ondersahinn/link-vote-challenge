@@ -1,0 +1,17 @@
+.notfound-page {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 40px auto;
+    justify-content: space-between;
+    p {
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 1px;
+    }
+    img {
+        width: auto;
+        max-width: 600px;
+    }
+}

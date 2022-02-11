@@ -1,15 +1,18 @@
 
 import './index.scss'
-import { ReactComponent as CloseIcon } from 'assest/img/Close.svg'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-const Notification = ({ visible, desc , onCancel}) => {
+const Notification = ({ visible, desc, onCancel }) => {
+    let interval : any= useRef();
 
     useEffect(() => {
-        setTimeout(() => {
-                onCancel()
-        },5000)
-    })
+        interval.current = setInterval(() => {
+            onCancel();
+        }, 2000)
+        return () => {
+            clearInterval(interval.current);
+        };
+    });
 
     if (visible) {
         return (
