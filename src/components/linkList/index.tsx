@@ -52,7 +52,7 @@ const LinkList = () => {
         setNotificationVisible(true)
     }
 
-    const handleUpVote = (link, voteType) => {
+    const handlePointVote = (link, voteType) => {
         let linkListTemp = [...linkList];
         const findIndexLink = linkListTemp.findIndex((e) => e.id === link.id);
         if (findIndexLink !== -1) {
@@ -68,7 +68,7 @@ const LinkList = () => {
             linkListTemp[findIndexLink] = { ...newObj };
             linkListTemp = linkListTemp.sort(function (a, b) {
                 const datePointA = new Date(a.pointCreatedTime);
-                const datePointB = new Date(a.pointCreatedTime);
+                const datePointB = new Date(b.pointCreatedTime);
                 if (b.point === a.point) {
                     if (datePointA > datePointB) {
                         return 0
@@ -88,7 +88,7 @@ const LinkList = () => {
         if (!!e.target.value) {
             linkListTemp = linkListTemp.sort(function (a, b) {
                 const datePointA = new Date(a.pointCreatedTime);
-                const datePointB = new Date(a.pointCreatedTime);
+                const datePointB = new Date(b.pointCreatedTime);
                 if (b.point === a.point) {
                     if (datePointA > datePointB) {
                         return 0
@@ -131,8 +131,8 @@ const LinkList = () => {
                                     <h3> {e.linkName} </h3>
                                     <a href={e.linkUrl} target='_blank' rel="noreferrer">( {e.linkUrl} ) </a>
                                     <div className="button-group">
-                                        <button data-testid={'vote-inc-button-' +index} onClick={() => handleUpVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
-                                        <button  data-testid={'vote-desc-button-' +index}  onClick={() => handleUpVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
+                                        <button data-testid={'vote-inc-button-' +index} onClick={() => handlePointVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
+                                        <button  data-testid={'vote-desc-button-' +index}  onClick={() => handlePointVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
                                     </div>
                                 </div>
                                 <span className="delete-icon">
