@@ -7,7 +7,7 @@ export interface ILinkList {
 }
 
 export const initialState: ILinkList = {
-  linkList: JSON.parse(localStorage.getItem('linkList')) || [{}],
+  linkList: JSON.parse(localStorage.getItem('linkList')) || [],
   pageIndex: 1,
   pageSize: 5,
 };
