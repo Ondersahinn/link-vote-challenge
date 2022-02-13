@@ -5,7 +5,6 @@ import { Suspense } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from 'react-router-dom';
 import { useHistory } from "react-router";
@@ -28,11 +27,9 @@ function App(): JSX.Element {
           <Switch>
             <Suspense fallback={loadingImg}>
               <Header />
-              <Route path="/" extach />
               <Route exact path='/' component={Home} />
               <Route exact path='/newlink' component={NewLink} />
               <Route path="/404" component={NotFound} />
-              <Redirect to="/404" />
             </Suspense>
           </Switch>
         </Router>

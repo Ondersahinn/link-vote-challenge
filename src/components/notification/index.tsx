@@ -3,7 +3,7 @@ import './index.scss'
 import { useEffect, useRef } from 'react'
 
 const Notification = ({ visible, desc, onCancel }) => {
-    let interval : any= useRef();
+    let interval: any = useRef();
 
     useEffect(() => {
         interval.current = setInterval(() => {
@@ -17,21 +17,17 @@ const Notification = ({ visible, desc, onCancel }) => {
     if (visible) {
         return (
             <>
-                <div className="notification-full-part" >
-                    <div className="notification-box">
-                        <div className="notification-info">
-                            <div className='header'>
-                                <h4>{desc ?? ' notification'}</h4>
-                            </div>
-                        </div>
+                <div data-testid='notification-test' className="notification-full-part" >
+                    <div className='header'>
+                        <h4>{desc ?? ' notification'}</h4>
                     </div>
-
                 </div>
             </>
         )
     }
     return (
         <>
+            <div data-testid='notification-test'></div>
         </>
     )
 }

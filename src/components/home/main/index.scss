@@ -43,7 +43,7 @@
       padding: 0 10px;
       display: flex;
       flex-direction: column;
-      min-height: calc(100vh - 215px);
+      max-height: calc(100vh - 200px);
       .order-select {
         margin-top: 10px;
         max-width: fit-content;

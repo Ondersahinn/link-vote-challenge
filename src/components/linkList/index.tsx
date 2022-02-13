@@ -17,6 +17,7 @@ export interface ILinkProp {
     pointCreatedTime: string
 }
 
+
 const LinkList = () => {
     const dispatch = useDispatch();
     const pageIndex = useSelector((state: any) => state.linkList.pageIndex)
@@ -26,7 +27,7 @@ const LinkList = () => {
     const [notificationVisible, setNotificationVisible] = useState(false);
     const [selectedLink, setSelectedLink] = useState<ILinkProp>();
 
-    const onCancel = (e) => {
+    const onCancel = () => {
         setVisible(false)
     }
 
@@ -42,7 +43,6 @@ const LinkList = () => {
     const handleDeleteOk = () => {
         const linkListTemp = [...linkList];
         const filteredData = linkListTemp.filter((e) => e.id !== selectedLink?.id);
-        console.log(filteredData)
         const totalPage = Math.ceil(filteredData.length / pageSize);
         if (pageIndex > totalPage) {
             dispatch(handlePageIndexChange(pageIndex - 1))
@@ -71,7 +71,7 @@ const LinkList = () => {
                 const datePointB = new Date(a.pointCreatedTime);
                 if (b.point === a.point) {
                     if (datePointA > datePointB) {
-                        return 1
+                        return 0
                     }
                     else {
                         return -1;
@@ -91,7 +91,7 @@ const LinkList = () => {
                 const datePointB = new Date(a.pointCreatedTime);
                 if (b.point === a.point) {
                     if (datePointA > datePointB) {
-                        return 1
+                        return 0
                     }
                     else {
                         return -1;
@@ -114,15 +114,15 @@ const LinkList = () => {
     if (!!linkList && linkList.length > 0) {
         return (
             <>
-                <div className="link-list-box">
+                <div className="link-list-box" data-testid='linklist-test'>
                     <select className="order-select" defaultValue='' onChange={handleLinkSort}>
                         <option disabled value=''>Order By</option>
                         <option value='asc'>Most Voted (Z - A)</option>
                         <option value='desc'>Less Voted (A - Z)</option>
                     </select>
-                    {linkList.slice((pageIndex * pageSize) - 5, pageSize * pageIndex).map((e) => {
+                    {linkList.slice((pageIndex * pageSize) - 5, pageSize * pageIndex).map((e,index) => {
                         return (
-                            <div className="link-lists" key={e.id}>
+                            <div className="link-lists" key={index}>
                                 <div className="point">
                                     <span>{e.point}</span>
                                     <span>POINTS</span>
@@ -131,8 +131,8 @@ const LinkList = () => {
                                     <h3> {e.linkName} </h3>
                                     <a href={e.linkUrl} target='_blank' rel="noreferrer">( {e.linkUrl} ) </a>
                                     <div className="button-group">
-                                        <button onClick={() => handleUpVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
-                                        <button onClick={() => handleUpVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
+                                        <button data-testid={'vote-inc-button-' +index} onClick={() => handleUpVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
+                                        <button  data-testid={'vote-desc-button-' +index}  onClick={() => handleUpVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
                                     </div>
                                 </div>
                                 <span className="delete-icon">
@@ -141,7 +141,7 @@ const LinkList = () => {
                             </div>
                         )
                     })}
-                    <Pagination total={linkList.length} pageSize={5} />
+                    <Pagination total={linkList.length} pageSize={5} pageIndex={pageIndex}/>
                 </div>
                 <Modal title='Remove Link' visible={visible} onCancel={onCancel}>
                     <div className="remove-link-content">
@@ -149,8 +149,8 @@ const LinkList = () => {
                         <span>{selectedLink?.linkName}</span>
                     </div>
                     <div className="remove-button-group">
-                        <button onClick={handleDeleteOk}>Ok</button>
-                        <button onClick={() => setVisible(false)}>Cancel</button>
+                        <button data-testid='modal-ok-button' onClick={handleDeleteOk}>Ok</button>
+                        <button  data-testid='modal-cancel-button' onClick={() => setVisible(false)}>Cancel</button>
                     </div>
                 </Modal>
                 <Notification desc='Remove Link' visible={notificationVisible} onCancel={handleNotificationCancel} />
@@ -160,7 +160,7 @@ const LinkList = () => {
     }
     return (
         <>
-            <div className="link-list-box">
+            <div className="link-list-box" data-testid='linklist-test-no-data'>
                 No Data
             </div>
         </>

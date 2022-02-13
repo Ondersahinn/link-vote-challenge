@@ -1,17 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface IMockData {
-  count: number,
+export interface ILinkList {
   linkList: Array<Object>,
-  searchKey: string;
   pageIndex: number,
   pageSize: number,
 }
 
-const initialState: IMockData = {
-  count: 20,
-  linkList: JSON.parse(localStorage.getItem('linkList')) || [],
-  searchKey: '',
+export const initialState: ILinkList = {
+  linkList: JSON.parse(localStorage.getItem('linkList')) || [{}],
   pageIndex: 1,
   pageSize: 5,
 };

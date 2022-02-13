@@ -4,7 +4,7 @@ import './index.scss'
 
 const Header = () => {
     return (
-        <div className="header-full-part">
+        <div data-testid='header-test' className="header-full-part">
             <div className="header-normal-part">
                 <Link to='/'>
                     <Logo />

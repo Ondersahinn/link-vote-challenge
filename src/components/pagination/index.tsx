@@ -1,5 +1,5 @@
 import styles from "./index.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handlePageIndexChange } from "redux/slices/linkList";
 import { ReactComponent as LeftIcon } from 'assest/img/Left.svg';
 import { ReactComponent as RightIcon } from 'assest/img/Right.svg'
@@ -7,11 +7,11 @@ import { ReactComponent as RightIcon } from 'assest/img/Right.svg'
 interface IProps {
     total: number,
     pageSize: number,
+    pageIndex:number
 }
-const Pagination = ({ total, pageSize }: IProps) => {
+const Pagination = ({ total, pageSize , pageIndex}: IProps) => {
 
     const dispatch = useDispatch();
-    const pageIndex = useSelector((state: any) => state.linkList.pageIndex)
 
     let pageList = [];
     const pageCount = Math.ceil(total / pageSize);
@@ -30,10 +30,10 @@ const Pagination = ({ total, pageSize }: IProps) => {
 
     return (
         <>
-            <ul className={styles.pagination}>
-                <li className={styles.nextprevbutton} onClick={() => handlePaginationChange(pageIndex - 1)}><LeftIcon /></li>
+            <ul data-testid='pagination-test' className={styles.pagination}>
+                <li className={styles.nextprevbutton} data-testid='pagination-desc' onClick={() => handlePaginationChange(pageIndex - 1)}><LeftIcon /></li>
                 {pageList}
-                <li className={styles.nextprevbutton}  onClick={() => handlePaginationChange(pageIndex + 1)}><RightIcon /></li>
+                <li className={styles.nextprevbutton} data-testid='pagination-inc' onClick={() => handlePaginationChange(pageIndex + 1)}><RightIcon /></li>
             </ul>
         </>
     );
