@@ -7,6 +7,7 @@ import Modal from "components/modal";
 import { useState } from "react";
 import Notification from "components/notification";
 import { handleLinkChange, handlePageIndexChange } from 'redux/actions';
+import EmtyImage from 'assest/img/emty-data.png';
 
 export interface ILinkProp {
     createdDateTime: string,
@@ -120,7 +121,7 @@ const LinkList = () => {
                         <option value='asc'>Most Voted (Z - A)</option>
                         <option value='desc'>Less Voted (A - Z)</option>
                     </select>
-                    {linkList.slice((pageIndex * pageSize) - 5, pageSize * pageIndex).map((e,index) => {
+                    {linkList.slice((pageIndex * pageSize) - 5, pageSize * pageIndex).map((e, index) => {
                         return (
                             <div className="link-lists" key={index}>
                                 <div className="point">
@@ -131,8 +132,8 @@ const LinkList = () => {
                                     <h3> {e.linkName} </h3>
                                     <a href={e.linkUrl} target='_blank' rel="noreferrer">( {e.linkUrl} ) </a>
                                     <div className="button-group">
-                                        <button data-testid={'vote-inc-button-' +index} onClick={() => handlePointVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
-                                        <button  data-testid={'vote-desc-button-' +index}  onClick={() => handlePointVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
+                                        <button data-testid={'vote-inc-button-' + index} onClick={() => handlePointVote(e, 'inc')}> <ArrowUpIcon /><span> Up Vote </span></button>
+                                        <button data-testid={'vote-desc-button-' + index} onClick={() => handlePointVote(e, 'desc')}> <ArrowDownIcon /> <span> Down Vote</span> </button>
                                     </div>
                                 </div>
                                 <span className="delete-icon">
@@ -141,7 +142,7 @@ const LinkList = () => {
                             </div>
                         )
                     })}
-                    <Pagination total={linkList.length} pageSize={5} pageIndex={pageIndex}/>
+                    <Pagination total={linkList.length} pageSize={5} pageIndex={pageIndex} />
                 </div>
                 <Modal title='Remove Link' visible={visible} onCancel={onCancel}>
                     <div className="remove-link-content">
@@ -150,7 +151,7 @@ const LinkList = () => {
                     </div>
                     <div className="remove-button-group">
                         <button data-testid='modal-ok-button' onClick={handleDeleteOk}>Ok</button>
-                        <button  data-testid='modal-cancel-button' onClick={() => setVisible(false)}>Cancel</button>
+                        <button data-testid='modal-cancel-button' onClick={() => setVisible(false)}>Cancel</button>
                     </div>
                 </Modal>
                 <Notification desc='Remove Link' visible={notificationVisible} onCancel={handleNotificationCancel} />
@@ -160,8 +161,9 @@ const LinkList = () => {
     }
     return (
         <>
-            <div className="link-list-box" data-testid='linklist-test-no-data'>
-                No Data
+            <div className="link-list-box nodata" data-testid='linklist-test-no-data'>
+                <img src={EmtyImage} alt='Not data' />
+                <span>NO DATA</span>
             </div>
         </>
 
